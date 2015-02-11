@@ -1,0 +1,4 @@
+#!/bin/bash
+pushd {{ dynatrace_client_linux_install_dir }}
+echo -e {{ dynatrace_client_installer_bitsize }}\\nY\\nY\\nY | java -jar {{ dynatrace_client_linux_installer_file_name }}
+popd
