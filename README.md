@@ -19,18 +19,18 @@ Download the Dynatrace Client installer from [downloads.compuwareapm.com](http:/
 
 As defined in ```defaults/main.yml```:
 
-| Name                                         | Default                 | Description |
-|----------------------------------------------|----------------------|-------------|
-| *dynatrace_client_installer_bitsize*         | 64                   | 32 or 64    |
-| *dynatrace_client_linux_install_dir*         | /opt                 | The Dynatrace Client will be installed into the directory *$dynatrace_client_linux_install_dir*/dynatrace-*$major*-*$minor*-*$rev*, where *$major*, *$minor* and *$rev* are given by the installer. A symbolic link to the actual installation directory will be created in *$dynatrace_client_linux_install_dir*/dynatrace. |
-| *dynatrace_client_linux_installer_file_name* | dynatrace-client.jar | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
-| *dynatrace_client_role_name*                 | Dynatrace-Client     | The actual name of this role in an [Ansible Playbook's](http://docs.ansible.com/playbooks.html) ```roles``` directory. |
+| Name                                         | Default                    | Description |
+|----------------------------------------------|----------------------------|-------------|
+| *dynatrace_client_installer_bitsize*         | 64                         | 32 or 64    |
+| *dynatrace_client_linux_install_dir*         | /opt                       | The Dynatrace Client will be installed into the directory *$dynatrace_client_linux_install_dir*/dynatrace-*$major*-*$minor*-*$rev*, where *$major*, *$minor* and *$rev* are given by the installer. A symbolic link to the actual installation directory will be created in *$dynatrace_client_linux_install_dir*/dynatrace. |
+| *dynatrace_client_linux_installer_file_name* | dynatrace-client.jar       | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
+| *dynatrace_client_role_name*                 | dynatrace.Dynatrace-Client | The actual name of this role in an [Ansible Playbook's](http://docs.ansible.com/playbooks.html) ```roles``` directory. |
 
 ## Example Playbook
 
 	- hosts: all
 	  roles:
-	    - { role: Dynatrace-Client }
+	    - { role: dynatrace.Dynatrace-Client }
 
 ## Additional Resources
 
