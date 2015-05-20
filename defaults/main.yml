@@ -3,7 +3,6 @@ dynatrace_client_installer_bitsize: 64
 
 dynatrace_client_linux_install_dir: /opt
 dynatrace_client_linux_installer_file_name: dynatrace-client.jar
+dynatrace_client_linux_installer_file_url: http://localhost/dynatrace/dynatrace-client.jar
 
 dynatrace_client_role_name: dynatrace.Dynatrace-Client
-
-# Do not change anything below unless you know what you are doing!
