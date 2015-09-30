@@ -6,7 +6,7 @@ This Ansible role installs and configures the Dynatrace Client of the [Dynatrace
 
 The role is available via:
 
-- [Ansible Galaxy](https://galaxy.ansible.com/list#/roles/2856)
+- [Ansible Galaxy](https://galaxy.ansible.com/list#/roles/5323)
 - [GitHub](https://github.com/Dynatrace/Dynatrace-Client-Ansible)
 
 ## Description
