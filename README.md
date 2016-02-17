@@ -30,7 +30,7 @@ As defined in ```defaults/main.yml```:
 ```
 - hosts: all
   roles:
-    - role: dynatrace.Dynatrace-Client
+    - role: Dynatrace.Dynatrace-Client
 ```
 
 ## Testing
