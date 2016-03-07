@@ -1,42 +1,68 @@
 ---
-- name: Create the installation directory {{ dynatrace_client_linux_install_dir }}
-  file: path="{{ dynatrace_client_linux_install_dir }}" state=directory
+- name: "Create the installation directory {{ dynatrace_client_linux_install_dir }}"
+  file:
+    path: "{{ dynatrace_client_linux_install_dir }}"
+    state: directory
   register: dynatrace_client_create_install_dir_result
-  sudo: yes
+  become: yes
 
 - name: Change ownership of the installation directory if it had to be created
-  file: path="{{ dynatrace_client_linux_install_dir }}" owner=dynatrace group=dynatrace
-  when: dynatrace_client_create_install_dir_result|changed
-  sudo: yes
+  file:
+    path: "{{ dynatrace_client_linux_install_dir }}"
+    owner: "{{ dynatrace_client_owner }}"
+    group: "{{ dynatrace_client_group }}"
+  when: dynatrace_client_create_install_dir_result | changed
+  become: yes
 
-- name: Copy the Dynatrace Client installer to {{ dynatrace_client_linux_install_dir }}
-  copy: src="{{ playbook_dir }}/roles/{{ dynatrace_client_role_name }}/files/linux/{{ dynatrace_client_linux_installer_file_name }}" dest="{{ dynatrace_client_linux_install_dir }}"
-  sudo: yes
+- name: "Copy the Dynatrace Client installer to {{ dynatrace_client_linux_install_dir }}"
+  copy:
+    src: "{{ playbook_dir }}/roles/{{ dynatrace_client_role_name }}/files/linux/{{ dynatrace_client_linux_installer_file_name }}"
+    dest: "{{ dynatrace_client_linux_install_dir }}"
+  become: yes
 
 - name: Copy the Dynatrace Client installer script to /tmp
-  template: src=templates/linux/run-dynatrace-client-installer.sh.j2 dest=/tmp/run-dynatrace-client-installer.sh
+  template:
+    src: templates/linux/run-dynatrace-client-installer.sh.j2
+    dest: /tmp/run-dynatrace-client-installer.sh
 
 - name: Install the Dynatrace Client
   shell: /bin/bash /tmp/run-dynatrace-client-installer.sh
-  sudo: yes
+  become: yes
 
 - name: Gather the name of the installation directory
-  shell: find . -maxdepth 1 -name dynatrace-\* -type d -printf '%T@ %p\n' | sort -k 1nr | cut -d' ' -f2 | head -1 chdir={{ dynatrace_client_linux_install_dir }}
+  shell: find . -maxdepth 1 -name dynatrace-\* -type d -printf '%T@ %p\n' | sort -k 1nr | cut -d' ' -f2 | head -1
+  args:
+    chdir: "{{ dynatrace_client_linux_install_dir }}"
   register: dynatrace_client_installed_version_dir
-  sudo: yes
+  become: yes
 
 - name: Change ownership of the installation directory
-  file: path={{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }} owner=dynatrace group=dynatrace state=directory recurse=yes
-  sudo: yes
+  file:
+    path: "{{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }}"
+    owner: "{{ dynatrace_client_owner }}"
+    group: "{{ dynatrace_client_group }}"
+    state: directory
+    recurse: yes
+  become: yes
 
 - name: Change mode of the installation directory
-  file: path={{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }} mode=0755
-  sudo: yes
+  file:
+    path: "{{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }}"
+    mode: 0755
+  become: yes
 
-- name: Create a symlink of the actual installation directory to {{ dynatrace_client_linux_install_dir }}/dynatrace
-  file: src={{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }} dest={{ dynatrace_client_linux_install_dir }}/dynatrace owner=dynatrace group=dynatrace mode=0755 state=link
-  sudo: yes
+- name: "Create a symlink of the actual installation directory to {{ dynatrace_client_linux_install_dir }}/dynatrace"
+  file:
+    src: "{{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_installed_version_dir.stdout }}"
+    dest: "{{ dynatrace_client_linux_install_dir }}/dynatrace"
+    owner: "{{ dynatrace_client_owner }}"
+    group: "{{ dynatrace_client_group }}"
+    mode: 0755
+    state: link
+  become: yes
 
 - name: Remove the Dynatrace Client installer
-  file: path="{{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_linux_installer_file_name }}" state=absent
-  sudo: yes
+  file:
+    path: "{{ dynatrace_client_linux_install_dir }}/{{ dynatrace_client_linux_installer_file_name }}"
+    state: absent
+  become: yes
