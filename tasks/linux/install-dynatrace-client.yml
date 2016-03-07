@@ -14,7 +14,7 @@
   sudo: yes
 
 - name: Copy the Dynatrace Client installer script to /tmp
-  template: src=../../templates/linux/run-dynatrace-client-installer.sh.j2 dest=/tmp/run-dynatrace-client-installer.sh
+  template: src=templates/linux/run-dynatrace-client-installer.sh.j2 dest=/tmp/run-dynatrace-client-installer.sh
 
 - name: Install the Dynatrace Client
   shell: /bin/bash /tmp/run-dynatrace-client-installer.sh
