@@ -3,6 +3,6 @@ dynatrace_client_installer_bitsize: 64
 
 dynatrace_client_linux_install_dir: /opt
 dynatrace_client_linux_installer_file_name: dynatrace-client.jar
-dynatrace_client_linux_installer_file_url: http://downloads.dynatracesaas.com/6.2/dynatrace-client-linux-x86.jar
+dynatrace_client_linux_installer_file_url: http://downloads.dynatracesaas.com/6.3/dynatrace-client-linux-x86.jar
 
 dynatrace_client_role_name: Dynatrace.Dynatrace-Client
