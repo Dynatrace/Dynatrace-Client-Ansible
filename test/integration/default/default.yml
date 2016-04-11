@@ -2,4 +2,5 @@
 - hosts: test-kitchen
   roles:
   - role: Dynatrace.Dynatrace-Client
-    dynatrace_client_linux_installer_file_url: http://10.0.2.2/dynatrace/6.3/dynatrace-client.jar
+    dynatrace_client_linux_installer_file_name: dynatrace-client.jar
+    dynatrace_client_linux_installer_file_url: "http://10.0.2.2/dynatrace/6.3/{{ dynatrace_client_linux_installer_file_name }}"

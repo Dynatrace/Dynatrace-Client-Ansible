@@ -11,7 +11,7 @@ The role is available via:
 
 ## Description
 
-This Ansible role downloads and installs the most recent version of the Dynatrace Client from [http://downloads.dynatracesaas.com](http://downloads.dynatracesaas.com). The default download link can be overridden via the `dynatrace_client_linux_installer_file_url` attribute. Alternatively, you can place the installer artifact as `dynatrace-client.jar` in the role's `files` directory from where it will be picked up during the installation. Please refer to `defaults/main.yml` for a list of supported attributes.
+This role downloads and installs the most recent version of the Dynatrace Client from [http://downloads.dynatracesaas.com](http://downloads.dynatracesaas.com). Alternatively, you can place the installer artifact as `dynatrace-client-linux-x86.jar` in the role's `files` directory from where it will be picked up during the installation. The default file name and URL can be overridden via the `dynatrace_client_linux_installer_file_name` and `dynatrace_client_linux_installer_file_url` attributes, respectively. Please refer to `defaults/main.yml` for a list of supported attributes.
 
 ## Role Variables
 
@@ -21,8 +21,8 @@ As defined in ```defaults/main.yml```:
 |----------------------------------------------|-----------------------------------------------------------------------|-------------|
 | *dynatrace_client_installer_bitsize*         | 64                                                                    | 32 or 64  |
 | *dynatrace_client_linux_install_dir*         | /opt                                                                  | The Dynatrace Client will be installed into the directory *$dynatrace_client_linux_install_dir*/dynatrace-*$major*-*$minor*-*$rev*, where *$major*, *$minor* and *$rev* are given by the installer. A symbolic link to the actual installation directory will be created in *$dynatrace_client_linux_install_dir*/dynatrace. |
-| *dynatrace_client_linux_installer_file_name* | dynatrace-client.jar                                                  | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
-| *dynatrace_client_linux_installer_file_url*  | http://downloads.dynatracesaas.com/6.2/dynatrace-client-linux-x86.jar | A HTTP, HTTPS or FTP URL to the Dynatrace Client installer in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path. |
+| *dynatrace_client_linux_installer_file_name* | dynatrace-client-linux-x86.jar                                        | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
+| *dynatrace_client_linux_installer_file_url*  | http://downloads.dynatracesaas.com/6.3/dynatrace-client-linux-x86.jar | A HTTP, HTTPS or FTP URL to the Dynatrace Client installer in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path. |
 | *dynatrace_client_owner*                     | dynatrace                                                             | The system user that owns the Dynatrace installation.
 | *dynatrace_client_group*                     | dynatrace                                                             | The system user's group that owns the Dynatrace installation.
 | *dynatrace_client_role_name*                 | Dynatrace.Dynatrace-Client                                            | The actual name of this role in an [Ansible Playbook's](http://docs.ansible.com/playbooks.html) ```roles``` directory. |

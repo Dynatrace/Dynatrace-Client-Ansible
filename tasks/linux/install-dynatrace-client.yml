@@ -14,10 +14,18 @@
   when: dynatrace_client_create_install_dir_result | changed
   become: yes
 
-- name: "Copy the Dynatrace Client installer to {{ dynatrace_client_linux_install_dir }}"
+- name: "Copy the Dynatrace installer to {{ dynatrace_client_linux_install_dir }} if the installer is provided locally"
   copy:
     src: "{{ playbook_dir }}/roles/{{ dynatrace_client_role_name }}/files/linux/{{ dynatrace_client_linux_installer_file_name }}"
     dest: "{{ dynatrace_client_linux_install_dir }}"
+  when: dynatrace_client_installer_file_provided.stat.exists
+  become: yes
+
+- name: "Download the Dynatrace installer to {{ dynatrace_client_linux_install_dir }} if the installer is not provided locally"
+  get_url:
+    url: "{{ dynatrace_client_linux_installer_file_url }}"
+    dest: "{{ dynatrace_client_linux_install_dir }}"
+  when: not dynatrace_client_installer_file_provided.stat.exists
   become: yes
 
 - name: Copy the Dynatrace Client installer script to /tmp
