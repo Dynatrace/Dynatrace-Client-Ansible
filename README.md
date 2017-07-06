@@ -1,6 +1,6 @@
 # Dynatrace-Client-Ansible
 
-This Ansible role installs and configures the Dynatrace Client of the [Dynatrace Application Monitoring](http://www.dynatrace.com/en/products/application-monitoring.html) solution.
+This Ansible role installs and configures the Dynatrace Client of the [Dynatrace AppMon](https://www.dynatrace.com/support/doc/appmon/) solution.
 
 ## Download
 
@@ -21,8 +21,8 @@ As defined in ```defaults/main.yml```:
 |----------------------------------------------|-----------------------------------------------------------------------|-------------|
 | *dynatrace_client_installer_bitsize*         | 64                                                                    | 32 or 64  |
 | *dynatrace_client_linux_install_dir*         | /opt                                                                  | The Dynatrace Client will be installed into the directory *$dynatrace_client_linux_install_dir*/dynatrace-*$major*-*$minor*-*$rev*, where *$major*, *$minor* and *$rev* are given by the installer. A symbolic link to the actual installation directory will be created in *$dynatrace_client_linux_install_dir*/dynatrace. |
-| *dynatrace_client_linux_installer_file_name* | dynatrace-client-7.0.0.2449-linux-x86.jar                             | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
-| *dynatrace_client_linux_installer_file_url*  | https://files.dynatrace.com/downloads/OnPrem/dynaTrace/7.0/7.0.0.2449/dynatrace-client-7.0.0.2449-linux-x86.jar | A HTTP, HTTPS or FTP URL to the Dynatrace Client installer in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path. |
+| *dynatrace_client_linux_installer_file_name* | dynatrace-client-7.0.0.2469-linux-x86.jar                             | The file name of the Dynatrace Client installer in the role's ```files``` directory. |
+| *dynatrace_client_linux_installer_file_url*  | https://files.dynatrace.com/downloads/OnPrem/dynaTrace/7.0/7.0.0.2469/dynatrace-client-7.0.0.2469-linux-x86.jar | A HTTP, HTTPS or FTP URL to the Dynatrace Client installer in the form (http\|https\|ftp)://[user[:pass]]@host.domain[:port]/path. |
 | *dynatrace_client_owner*                     | dynatrace                                                             | The system user that owns the Dynatrace installation.
 | *dynatrace_client_group*                     | dynatrace                                                             | The system user's group that owns the Dynatrace installation.
 | *dynatrace_client_role_name*                 | Dynatrace.Dynatrace-Client                                            | The actual name of this role in an [Ansible Playbook's](http://docs.ansible.com/playbooks.html) ```roles``` directory. |
